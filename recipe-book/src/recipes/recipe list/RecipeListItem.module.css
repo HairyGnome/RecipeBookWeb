@@ -1,0 +1,47 @@
+.recipe-list-item {
+    display: flex;
+    flex-direction: column;
+    border: solid 4px deepskyblue;
+    border-radius: 15px;
+    box-shadow: 5px 5px 6px 3px rgba(0, 0, 0, 0.5);
+    margin: 10px;
+    padding: 10px;
+    width: 40%;
+    background-color: aliceblue;
+}
+
+.recipe-list-item:hover .food-image {
+    transform: scale(1.1);
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.image-div {
+    justify-content: center;
+    overflow: hidden;
+}
+
+.food-image {
+    width: 100%;
+    transition: transform 0.2s;
+}
+
+.details-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.data-logo {
+    height: 50px;
+}
+
+.data-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

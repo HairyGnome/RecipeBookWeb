@@ -1,0 +1,9 @@
+.page {
+    background-color: lightblue;
+    padding-top: 80px;
+}
+
+.recipe-list-container {
+    display: flex;
+    flex-wrap: wrap;
+}

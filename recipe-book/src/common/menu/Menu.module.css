@@ -1,0 +1,41 @@
+.menu-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: deepskyblue;
+    height: 80px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.links-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.link {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 22px;
+    margin: 0 10px;
+}
+
+.logo {
+    height: 200px;
+}
+
+.logo-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 95px;
+}
+
+
