@@ -1,0 +1,38 @@
+.recipe-details-item {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.image-div {
+    justify-content: center;
+    overflow: hidden;
+}
+
+.food-image {
+    width: 100%;
+}
+
+.details-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.data-logo {
+    height: 50px;
+}
+
+.data-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
