@@ -10,7 +10,7 @@ import RecipeDetailPage from "./recipes/details/RecipeDetailPage";
 function App() {
     return (
         <Router>
-            <div>
+            <div className='app'>
                 <Menu />
                 <Routes>
                     <Route path="/" element={<RecipeListPage />} />

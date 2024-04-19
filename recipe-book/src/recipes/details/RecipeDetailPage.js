@@ -1,34 +1,44 @@
 import styles from './RecipeDetailPage.module.css';
 import RecipeDetailsItem from './RecipeDetailsItem';
+import {useEffect} from "react";
+import {useParams} from "react-router-dom";
+import {useState} from "react";
+import axios from "axios";
+import LoadingIndicator from "../../common/loading/LoadingIndicator";
 
 
 function RecipeDetailPage() {
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [recipeDetails, setRecipeDetails] = useState({'name': '', 'prepTime': '', 'calories': '', 'imageUrl': '', 'ingredients': [], 'instructions': []});
+
+    const id = useParams().id;
+
+    async function fetchRecipeDetails() {
+        const response = await axios({
+            method: 'GET',
+            url: 'http://localhost:80/recipe',
+            params: {
+                id: id
+            }
+        });
+        return response.data.data;
+    }
+
+    useEffect(() => {
+        setIsLoading(true);
+        fetchRecipeDetails().then((data) => {
+            console.log(data);
+            setRecipeDetails(data);
+            setIsLoading(false);
+        });
+    }, []);
+
+
     return(
         <div className={styles['page']}>
             <div className={styles['content']}>
-                {RecipeDetailsItem({
-                    id: 1,
-                    title: 'Spaghetti',
-                    calories: 382,
-                    prepTime: '30 minutes',
-                    imageUrl: 'https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/b60280faac3745be8a66bdc12c0757d1.jpeg'
-                })}
-                <div className={styles['ingredients']}>
-                    <h2>Ingredients</h2>
-                    <ul>
-                        <li>1 kg spaghetti</li>
-                        <li>Tomato</li>
-                        <li>Onion</li>
-                    </ul>
-                </div>
-                <div className={styles['instructions']}>
-                    <h2>Instructions</h2>
-                    <ol>
-                        <li>Boil water</li>
-                        <li>Add spaghetti</li>
-                        <li>Boil spaghetti</li>
-                    </ol>
-                </div>
+                { isLoading ? <LoadingIndicator /> : <RecipeDetailsItem recipe={recipeDetails} /> }
             </div>
 
         </div>

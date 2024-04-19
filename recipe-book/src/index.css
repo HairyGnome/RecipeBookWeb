@@ -12,3 +12,11 @@ code {
     monospace;
 }
 
+html, body {
+  height: 100%;
+}
+
+#root {
+  min-height: 100vh;
+  height: fit-content;
+}

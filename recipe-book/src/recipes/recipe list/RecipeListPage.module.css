@@ -1,6 +1,8 @@
 .page {
     background-color: lightblue;
-    padding-top: 80px;
+    padding-top: 120px;
+    min-height: 100vh;
+    height: fit-content;
 }
 
 .recipe-list-container {
