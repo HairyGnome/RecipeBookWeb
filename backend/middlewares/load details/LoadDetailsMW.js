@@ -6,7 +6,6 @@ module.exports = function LoadDetailsMW() {
         axios(request)
             .then( response => {
                 res.locals.detailsData = response.data;
-                console.log(response.data);
                 return next();
             });
     }

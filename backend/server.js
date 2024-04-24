@@ -11,8 +11,22 @@ const BuildDetailsRequestMW = require("./middlewares/load details/BuildDetailsRe
 const LoadDetailsMW = require("./middlewares/load details/LoadDetailsMW");
 const BuildDetailsResponseMW = require("./middlewares/load details/BuildDetailsResponseMW");
 const SendDetailsResponseMW = require("./middlewares/load details/SendDetailsResponseMW");
+const CheckParamsMW = require("./middlewares/users/register/CheckParamsMW");
+const CheckAvailabilityMW = require("./middlewares/users/register/CheckAvailabilityMW");
+const SaveUserMw = require("./middlewares/users/register/SaveUserMw");
+const mongoose = require('mongoose');
+const User = require('./models/User');
+const Favourite = require('./models/Favourite');
 
 const PORT = 80
+
+objectrepository = {
+    User: User,
+    Favourite: Favourite
+}
+
+mongoose.connect('mongodb://127.0.0.1:27017/recipe-book')
+    .then(() => console.log('Database connected!'));
 
 app.use(cors())
 
@@ -22,12 +36,14 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(express.json());
+
 app.get('/', (req, res) => {
     res.send('Hello from Express!');
 });
 
-app.get('/pages', /*
-    BuildLoadRequestMW(),
+app.get('/pages',
+    /*BuildLoadRequestMW(),
     LoadRecipesMW(),
     BuildLoadResponseMW(),
     SendLoadResponseMW()*/
@@ -41,6 +57,12 @@ app.get('/recipe',
     LoadDetailsMW(),
     BuildDetailsResponseMW(),
     SendDetailsResponseMW()
+);
+
+app.post('/users/register',
+    CheckParamsMW(),
+    CheckAvailabilityMW(objectrepository),
+    SaveUserMw(objectrepository)
 );
 
 app.listen(PORT, () => {

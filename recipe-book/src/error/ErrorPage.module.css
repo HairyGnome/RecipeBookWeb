@@ -1,0 +1,37 @@
+.error-page {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 100vh;
+    height: fit-content;
+    width: 100%;
+    background-color: lightblue;
+}
+
+.image-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-top: 40px;
+    width: 50%;
+}
+
+.error-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    margin-top: 40px;
+    width: 50%;
+}
+
+.error-code {
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 30px;
+    font-weight: bold;
+}
