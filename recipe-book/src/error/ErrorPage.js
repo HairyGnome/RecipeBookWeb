@@ -14,6 +14,9 @@ function ErrorPage() {
         case '500':
             message = 'An error occurred when connecting to the server';
             break;
+        case '520':
+            message = 'An unexpected error occurred'
+            break;
         default:
             message = 'An error occurred';
     }

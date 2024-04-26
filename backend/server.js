@@ -14,6 +14,7 @@ const SendDetailsResponseMW = require("./middlewares/load details/SendDetailsRes
 const CheckParamsMW = require("./middlewares/users/register/CheckParamsMW");
 const CheckAvailabilityMW = require("./middlewares/users/register/CheckAvailabilityMW");
 const SaveUserMw = require("./middlewares/users/register/SaveUserMw");
+const GetUserMW = require('./middlewares/users/GetUserMW')
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const Favourite = require('./models/Favourite');
@@ -43,13 +44,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/pages',
-    /*BuildLoadRequestMW(),
+    BuildLoadRequestMW(),
     LoadRecipesMW(),
     BuildLoadResponseMW(),
-    SendLoadResponseMW()*/
+    SendLoadResponseMW()/*
     LoadCachedDataMW(),
     BuildLoadResponseMW(),
-    SendLoadResponseMW()
+    SendLoadResponseMW()*/
 );
 
 app.get('/recipe',
@@ -61,9 +62,12 @@ app.get('/recipe',
 
 app.post('/users/register',
     CheckParamsMW(),
-    CheckAvailabilityMW(objectrepository),
+    GetUserMW(objectrepository),
+    CheckAvailabilityMW(),
     SaveUserMw(objectrepository)
 );
+
+app.post('/users/login',);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

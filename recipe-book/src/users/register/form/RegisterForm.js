@@ -5,6 +5,7 @@ import {ToastContainer, toast, Bounce} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ErrorToast from "../../../common/toast/ErrorToast";
 import InfoToast from "../../../common/toast/InfoToast";
+import {Navigate} from "react-router-dom";
 
 function RegisterForm() {
 
@@ -16,20 +17,11 @@ function RegisterForm() {
     const onSubmit = async (event) => {
         event.preventDefault();
 
-        if (username === '') {
+        if (username === ''
+            || email === ''
+            || password === ''
+            || confirmPassword === '') {
             ErrorToast('Missing parameters! Please fill out all fields.');
-            return;
-        }
-        if (email === '') {
-            ErrorToast('Missing parameters! Please fill out all fields.');
-            return;
-        }
-        if (password === '') {
-            ErrorToast('Missing parameters! Please fill out all fields.');
-            return;
-        }
-        if (confirmPassword !== password) {
-            ErrorToast('Passwords not matching!');
             return;
         }
 
@@ -55,7 +47,7 @@ function RegisterForm() {
                     ErrorToast('Username or email address already exists');
                 }
                 else {
-                    // TODO
+                    window.open('/error/520')
                 }
         });
     };

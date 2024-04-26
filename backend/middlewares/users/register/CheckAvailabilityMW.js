@@ -1,15 +1,7 @@
 
 
-module.exports = function (objectRepository) {
+module.exports = function () {
     return async function (req, res, next) {
-        const users = await objectRepository.User.find({
-            $or: [
-                {email: req.body.email},
-                {username: req.body.username}
-            ]});
-        if (users.length > 0) {
-            return res.status(409).json({error: 'User already exists'});
-        }
-        return next();
+        return res.local.user === undefined ? res.status(409).json({error: 'User already exists'}) : next();
     };
 }

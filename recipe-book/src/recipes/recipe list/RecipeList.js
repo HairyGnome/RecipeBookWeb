@@ -18,7 +18,10 @@ function RecipeList() {
             params: {
                 page: page
             }
-        });
+        }).catch(err => {
+
+            window.location.href = '/error/520'
+        })
         return response.data.data;
     }
 

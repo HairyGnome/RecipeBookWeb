@@ -10,7 +10,7 @@ module.exports = function BuildLoadResponseMW() {
                 recipes.push({
                     id: recipe.id,
                     name: recipe.name,
-                    prepTime: recipe.totalTime === undefined ? 'Unknown' : recipe.totalTime,
+                    prepTime: recipe.total_time_tier === null ? 'Unknown' : recipe.total_time_tier.display_tier,
                     calories: recipe.nutrition.calories === undefined ? 'Unknown' : recipe.nutrition.calories,
                     imageUrl: recipe.thumbnail_url
                 });
