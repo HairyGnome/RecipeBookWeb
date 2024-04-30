@@ -2,6 +2,7 @@ import style from "./Menu.module.css";
 import logo from "../../images/logo.png";
 import { Link } from 'react-router-dom';
 import LoginButton from "../../common/login/button/LoginButton";
+import GetSessionCookie from "../../common/cookies/GetSessionCookie";
 
 function Menu() {
     return (
@@ -13,11 +14,9 @@ function Menu() {
                             <img src={logo} alt="Logo" className={style['logo']}/>
                         </Link>
                     </div>
-                    <Link to="/" className={style['link']}>Home</Link>
-                    <Link to="/profile" className={style['link']}>Profile</Link>
                 </div>
                 <div>
-                    <LoginButton />
+                    {GetSessionCookie('sessionId') ? 'Hello ' + GetSessionCookie('username') : <LoginButton />}
                 </div>
             </div>
         </nav>

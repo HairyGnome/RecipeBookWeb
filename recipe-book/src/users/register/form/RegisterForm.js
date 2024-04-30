@@ -25,7 +25,7 @@ function RegisterForm() {
             return;
         }
 
-        const response = axios({
+        axios({
             method: 'post',
             url: 'http://localhost:80/users/register',
             data: {

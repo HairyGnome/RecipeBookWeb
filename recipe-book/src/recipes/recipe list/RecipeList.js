@@ -42,7 +42,7 @@ function RecipeList() {
     return (
         <div className={style['component-div']}>
             <div className={style['recipe-list']}>
-                {recipes.map((item) => RecipeListItem(item))}
+                {recipes.map((item, key) => <RecipeListItem key={key} {...item} />)}
             </div>
             <div className={style['show-more-div']}>
                 {isLoading ? <LoadingIndicator /> :

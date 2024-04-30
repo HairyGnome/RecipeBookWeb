@@ -14,16 +14,21 @@ const SendDetailsResponseMW = require("./middlewares/load details/SendDetailsRes
 const CheckParamsMW = require("./middlewares/users/register/CheckParamsMW");
 const CheckAvailabilityMW = require("./middlewares/users/register/CheckAvailabilityMW");
 const SaveUserMw = require("./middlewares/users/register/SaveUserMw");
-const GetUserMW = require('./middlewares/users/GetUserMW')
+const GetUserEmailOrNameMW = require('./middlewares/users/register/GetUserEmailOrNameMW')
+const CheckPasswordMW = require('./middlewares/users/login/CheckPasswordMW');
+const GenerateSessionIdMW = require('./middlewares/users/login/GenerateSessionIdMW');
+const GetUserMW = require('./middlewares/users/login/GetUserMW');
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const Favourite = require('./models/Favourite');
+const Session = require('./models/Session');
 
 const PORT = 80
 
 objectrepository = {
     User: User,
-    Favourite: Favourite
+    Favourite: Favourite,
+    Session: Session
 }
 
 mongoose.connect('mongodb://127.0.0.1:27017/recipe-book')
@@ -62,12 +67,16 @@ app.get('/recipe',
 
 app.post('/users/register',
     CheckParamsMW(),
-    GetUserMW(objectrepository),
+    GetUserEmailOrNameMW(objectrepository),
     CheckAvailabilityMW(),
     SaveUserMw(objectrepository)
 );
 
-app.post('/users/login',);
+app.post('/users/login',
+    GetUserMW(objectrepository),
+    CheckPasswordMW(),
+    GenerateSessionIdMW(objectrepository)
+);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

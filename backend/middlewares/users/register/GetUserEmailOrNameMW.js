@@ -5,7 +5,7 @@ module.exports = function(objectrepository) {
         objectrepository.User.findOne({
             username: req.body.username
         }).then(user => {
-            res.local.user = user;
+            res.locals.user = user;
             return next();
         });
     }
