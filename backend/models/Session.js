@@ -5,7 +5,7 @@ const ObjectId = Schema.ObjectId;
 
 const Session = new Schema({
     id: ObjectId,
-    username: String,
+    userid: String,
     sessionId: String
 });
 

@@ -1,6 +1,6 @@
 import RecipeList from "./RecipeList";
 import style from "./RecipeListPage.module.css"
-import Menu from "../../common/menu/Menu";
+import Menu from "../../common/menu/menu strip/Menu";
 import {BrowserRouter as Router} from 'react-router-dom';
 import Searchbar from "../../common/searchbar/Searchbar";
 

@@ -39,3 +39,23 @@
     justify-content: center;
     align-items: center;
 }
+
+.favourite-icon {
+    height: 40px;
+    width: 40px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.favourite-icon:hover {
+    cursor: pointer;
+}
+
+.favourite-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    width: 100%;
+}
+

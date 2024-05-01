@@ -24,6 +24,7 @@ function LoginForm() {
         axios({
             method: 'post',
             url: 'http://localhost:80/users/login',
+            withCredentials: true,
             data: {
                 username: username,
                 password: password
@@ -31,9 +32,14 @@ function LoginForm() {
         }).then(res => {
             if(res.status === 200) {
                 InfoToast('Login successful');
-                SetSessionCookie('sessionId', res.data.sessionId);
-                SetSessionCookie('username', res.data.username);
-                //window.open('/', '_self');
+                window.open('/', '_self');
+            }
+        }).catch(err => {
+            console.log(err);
+            if(err.response.status === 400) {
+                ErrorToast('Invalid username or password');
+            } else {
+                window.open('/error/520', '_self');
             }
         })
     }

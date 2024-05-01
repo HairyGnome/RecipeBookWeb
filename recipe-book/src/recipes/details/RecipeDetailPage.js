@@ -9,7 +9,7 @@ import LoadingIndicator from "../../common/loading/LoadingIndicator";
 
 function RecipeDetailPage() {
 
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [recipeDetails, setRecipeDetails] = useState({'name': '', 'prepTime': '', 'calories': '', 'imageUrl': '', 'ingredients': [], 'instructions': []});
 
     const id = useParams().id;
@@ -28,7 +28,6 @@ function RecipeDetailPage() {
     useEffect(() => {
         setIsLoading(true);
         fetchRecipeDetails().then((data) => {
-            console.log(data);
             setRecipeDetails(data);
             setIsLoading(false);
         });

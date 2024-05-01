@@ -34,8 +34,9 @@ function RegisterForm() {
                 password: password
             }
         }).then(res => {
-            if(res.status === 201) {
+            if(res.status === 200) {
                 InfoToast('Registration successful');
+                window.open('/login', '_self');
             }
             if(res.status === 406) {
                 ErrorToast('Missing parameters! Please fill out all fields.');
@@ -47,7 +48,7 @@ function RegisterForm() {
                     ErrorToast('Username or email address already exists');
                 }
                 else {
-                    window.open('/error/520')
+                    window.open('/error/520', '_self');
                 }
         });
     };

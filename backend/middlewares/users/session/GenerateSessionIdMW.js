@@ -5,18 +5,17 @@ module.exports = function(objectrepository) {
         const sessionId = uuid.v4();
 
         const session = new objectrepository.Session({
-            username: user.username,
+            userid: user._id,
             sessionId: sessionId
         });
 
+        res.locals.sessionId = sessionId;
+
         session.save().then(() => {
-           return res.json({
-               username: user.username,
-               sessionId: sessionId
-           })
+           return next();
         }).catch(err => {
             console.log(err);
-            return res.status(500).json({message: 'Database error'});
+            return res.status(500).json({message: 'Internal server error'});
         });
     }
 }

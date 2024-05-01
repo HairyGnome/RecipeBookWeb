@@ -7,11 +7,11 @@ module.exports = function (objectRepository) {
             username: req.body.username,
             password: req.body.password
         });
-        try {
-            await newUser.save();
-        } catch (err) {
+        newUser.save().then(() => {
+            res.locals.userId = newUser._id;
+            return next();
+        }).catch( (err) => {
             return res.status(500).json({error: 'Error during user save'});
-        }
-        return res.status(201).json({message: 'User created'});
+        });
     };
 }

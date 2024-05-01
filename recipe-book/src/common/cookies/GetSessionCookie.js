@@ -15,4 +15,4 @@ function GetSessionCookie(cookieName) {
     return null;
 }
 
-module.exports = GetSessionCookie;
+export default GetSessionCookie;

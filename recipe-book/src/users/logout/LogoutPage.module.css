@@ -1,0 +1,18 @@
+
+
+.logout-page {
+    height: 100vh;
+    width: 100%;
+    background-color: lightblue;
+}
+
+.logout-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    padding-top: 120px;
+}
+

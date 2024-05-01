@@ -1,8 +1,9 @@
 import style from "./Menu.module.css";
-import logo from "../../images/logo.png";
+import logo from "../../../images/logo.png";
 import { Link } from 'react-router-dom';
-import LoginButton from "../../common/login/button/LoginButton";
-import GetSessionCookie from "../../common/cookies/GetSessionCookie";
+import LoginButton from "../../login/button/LoginButton";
+import GetSessionCookie from "../../cookies/GetSessionCookie";
+import UserDropdown from "../user dropdown/UserDropdown";
 
 function Menu() {
     return (
@@ -16,7 +17,7 @@ function Menu() {
                     </div>
                 </div>
                 <div>
-                    {GetSessionCookie('sessionId') ? 'Hello ' + GetSessionCookie('username') : <LoginButton />}
+                    {GetSessionCookie('sessionId') ? <UserDropdown /> : <LoginButton />}
                 </div>
             </div>
         </nav>
