@@ -1,10 +1,19 @@
 import styles from "./Searchbar.module.css";
+import {useState} from "react";
 
-function Searchbar() {
+function Searchbar({onSearchTermSubmit}) {
+
+    const [searchTerm, setSearchTerm] = useState('');
+
+    function onTermSubmit(event) {
+        event.preventDefault();
+        onSearchTermSubmit(searchTerm);
+    }
+
     return (
         <div className={styles['searchbar-div']}>
-            <form action="/search=?">
-                <input type="text" className={styles['searchbar']} placeholder="Search"/>
+            <form onSubmit={onTermSubmit}>
+                <input type="text" className={styles['searchbar']} placeholder="Search" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
             </form>
         </div>
     )

@@ -1,6 +1,6 @@
 import './App.css';
 import './recipes/recipe list/RecipeListItem'
-import RecipeListPage from "./recipes/recipe list/RecipeListPage";
+import RecipeList from "./recipes/recipe list/RecipeList";
 import LoginScreen from "./users/login/LoginScreen";
 import Menu from "./common/menu/menu strip/Menu";
 import {Navigate, Route, Routes} from "react-router-dom";
@@ -15,7 +15,7 @@ function App() {
             <div className='app'>
                 <Menu />
                 <Routes>
-                    <Route path="/" element={<RecipeListPage />} />
+                    <Route path="/" element={<RecipeList />} />
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/register" element={<LoginScreen />} />
                     <Route path={"/recipes/:id"} element={<RecipeDetailPage />}/>
