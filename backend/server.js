@@ -32,6 +32,9 @@ const SendFavouritesMW = require('./middlewares/favourites/SendFavouritesMW');
 const UpdateFavouritesListMW = require('./middlewares/favourites/UpdateFavouritesListMW');
 const UpdateFavouritesMW = require('./middlewares/favourites/UpdateFavouritesMW');
 const CreateFavouritesMW = require('./middlewares/favourites/CreateFavouritesMW');
+const CheckSessionMW = require('./middlewares/users/session/CheckSessionMW');
+const CheckSessionLoginMW = require('./middlewares/users/session/CheckSessionLoginMW');
+const GetSessionByIdMW = require('./middlewares/users/session/GetSessionByIdMW');
 
 const PORT = 80
 
@@ -67,8 +70,7 @@ app.get('/', (req, res) => {
 app.get('/pages',
     BuildLoadRequestMW(),
     LoadRecipesMW(),
-    BuildLoadResponseMW(),
-    SendLoadResponseMW()/*
+    BuildLoadResponseMW()/*
     LoadCachedDataMW(),
     BuildLoadResponseMW(),
     SendLoadResponseMW()*/
@@ -82,6 +84,8 @@ app.get('/recipe',
 );
 
 app.post('/users/register',
+    GetUserBySessionMW(objectrepository),
+    CheckSessionLoginMW(objectrepository),
     CheckParamsMW(),
     GetUserEmailOrNameMW(objectrepository),
     CheckAvailabilityMW(),
@@ -91,6 +95,8 @@ app.post('/users/register',
 
 app.post('/users/login',
     GetUserMW(objectrepository),
+    GetSessionByIdMW(objectrepository),
+    CheckSessionLoginMW(objectrepository),
     CheckPasswordMW(),
     GenerateSessionIdMW(objectrepository),
     SendCookiesMW()
@@ -103,6 +109,7 @@ app.post('/users/logout',
 
 app.post('/users/favourites/favourite',
     GetUserBySessionMW(objectrepository),
+    CheckSessionMW(objectrepository),
     LoadFavouritesMW(objectrepository),
     UpdateFavouritesListMW(objectrepository),
     UpdateFavouritesMW(objectrepository)
@@ -110,6 +117,7 @@ app.post('/users/favourites/favourite',
 
 app.get('/users/favourites',
     GetUserBySessionMW(objectrepository),
+    CheckSessionMW(objectrepository),
     LoadFavouritesMW(objectrepository),
     SendFavouritesMW(objectrepository)
 );

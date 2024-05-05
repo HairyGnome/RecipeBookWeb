@@ -36,10 +36,16 @@ function LoginForm() {
             }
         }).catch(err => {
             console.log(err);
-            if(err.response.status === 400) {
-                ErrorToast('Invalid username or password');
-            } else {
-                window.open('/error/520', '_self');
+            switch(err.response.status) {
+                case 400:
+                    ErrorToast('Invalid username or password');
+                    break;
+                case 401:
+                    ErrorToast('Already logged in');
+                    break;
+                default:
+                    window.open('/error/520', '_self');
+                    break;
             }
         })
     }

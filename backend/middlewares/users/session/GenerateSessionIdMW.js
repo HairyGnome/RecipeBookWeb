@@ -6,12 +6,14 @@ module.exports = function(objectrepository) {
 
         const session = new objectrepository.Session({
             userid: user._id,
-            sessionId: sessionId
+            sessionId: sessionId,
+            createdAt: Date.now()
         });
 
         res.locals.sessionId = sessionId;
 
         session.save().then(() => {
+            console.log('Session created');
            return next();
         }).catch(err => {
             console.log(err);

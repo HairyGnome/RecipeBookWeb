@@ -6,11 +6,7 @@ module.exports = function (objectrepository) {
         objectrepository.Session.findOne({
             sessionId: req.cookies.sessionId
         }).then(session => {
-            if (!session) {
-                return res.status(401).json({message: 'Session not found'});
-            }
-
-            res.locals.userid = session.userid;
+            res.locals.userid = session ? session.userid : undefined;
             return next();
         }).catch(err => {
             console.log(err);

@@ -15,7 +15,7 @@ module.exports = function BuildLoadResponseMW() {
                     imageUrl: recipe.thumbnail_url
                 });
             });
-        res.locals.recipes = recipes;
+        res.json({data: recipes});
         return next();
     };
 }

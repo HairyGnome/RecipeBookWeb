@@ -20,17 +20,18 @@ function RecipeList() {
     }
 
     const fetchRecipes = async () => {
-        const response = await axios({
+        return axios({
             method: 'GET',
             url: 'http://localhost:80/pages',
             params: {
                 page: page,
                 searchTerm: searchTerm
             }
+        }).then(response => {
+            return response.data.data;
         }).catch(err => {
             window.open('/error/520', '_self');
-        })
-        return response.data.data;
+        });
     }
 
     useEffect(() => {

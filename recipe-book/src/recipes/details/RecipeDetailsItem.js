@@ -18,7 +18,12 @@ function RecipeDetailsItem({recipe}) {
             withCredentials: true
         }).then(response => {
             const favourites = response.data;
-            setIsFavourite(favourites.includes(id.toString()));
+            if(response.status === 204) {
+                setIsFavourite(false);
+            } else {
+                setIsFavourite(favourites.includes(id.toString()));
+            }
+
         })
     }, [id]);
 
@@ -33,6 +38,9 @@ function RecipeDetailsItem({recipe}) {
         }).then(res => {
             if(res.status === 200) {
                 setIsFavourite(!isFavourite);
+            }
+            if(res.status === 204) {
+                setIsFavourite(false);
             }
         })
     }
