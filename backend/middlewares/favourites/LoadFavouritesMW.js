@@ -8,7 +8,8 @@ module.exports = function (objectrepository) {
         objectrepository.Favourite.findOne({
             userId: userid
         }).then(favourites => {
-            res.locals.favourites = favourites;
+            res.locals.favourites = favourites ? favourites.favourites.sort() : [];
+            res.locals.favouritesId = favourites ? favourites._id : null;
             return next();
         }).catch(err => {
             console.log(err);

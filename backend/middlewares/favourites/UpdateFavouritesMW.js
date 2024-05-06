@@ -2,11 +2,12 @@
 
 module.exports = function (objectrepository) {
     return function (req, res, next) {
-        const id = res.locals.favourites.id;
-        const favourites = res.locals.favourites.favourites;
+        const id = res.locals.favouritesId;
+        const favourites = res.locals.favourites;
+
 
         objectrepository.Favourite.findOneAndUpdate({
-            id: id
+            _id: id
         }, {favourites: favourites}).then(favourites => {
             return res.status(200).json('Operation successful');
         }).catch(err => {
