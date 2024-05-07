@@ -14,6 +14,12 @@ function RegisterForm() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+
+    function passwordFormatCheck() {
+        const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d!@#$%^&*]{8,20}$/;
+        return regex.test(password);
+    }
+
     const onSubmit = async (event) => {
         event.preventDefault();
 
@@ -22,6 +28,11 @@ function RegisterForm() {
             || password === ''
             || confirmPassword === '') {
             ErrorToast('Missing parameters! Please fill out all fields.');
+            return;
+        }
+
+        if (!passwordFormatCheck()) {
+            ErrorToast('Password must contain at least one uppercase letter, one lowercase letter, one number and be between 8 and 20 characters long');
             return;
         }
 
