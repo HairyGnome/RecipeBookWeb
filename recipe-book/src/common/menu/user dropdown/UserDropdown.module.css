@@ -26,12 +26,13 @@
     background-color: deepskyblue;
     border: solid 4px darkblue;
     border-radius: 10px;
-    width: 200px;
+    width: 300px;
 }
 
 .dropdown-div li {
     list-style-type: none;
     padding: 10px;
+
 }
 
 .link {
@@ -44,4 +45,12 @@
 .link:hover {
     cursor: pointer;
     color: lightgrey;
+}
+
+.dropdown-text {
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding-left: 30px;
 }

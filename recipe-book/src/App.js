@@ -8,7 +8,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import RecipeDetailPage from "./recipes/details/RecipeDetailPage";
 import ErrorPage from "./error/ErrorPage";
 import LogoutPage from "./users/logout/LogoutPage";
-import FavouriteList from "./favourites/FavouriteList";
+import FavouriteListPage from "./favourites/FavouriteListPage";
 
 function App() {
     return (
@@ -22,7 +22,7 @@ function App() {
                     <Route path={"/recipes/:id"} element={<RecipeDetailPage />}/>
                     <Route path="/error/:code" element={<ErrorPage />} />
                     <Route path='/logout' element={<LogoutPage />} />
-                    <Route path='/favourites' element={<FavouriteList />} />
+                    <Route path='/favourites' element={<FavouriteListPage />} />
                     <Route path='*' element={<Navigate to="/error/404" />} />
                 </Routes>
             </div>

@@ -23,6 +23,7 @@ function RecipeList() {
         return axios({
             method: 'GET',
             url: 'http://localhost:80/pages',
+            withCredentials: true,
             params: {
                 page: page,
                 searchTerm: searchTerm

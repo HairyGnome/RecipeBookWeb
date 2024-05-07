@@ -3,8 +3,7 @@
 module.exports = function (objectrepository) {
     return function (req, res, next) {
         const favourites = res.locals.favourites;
-        const recipeId = req.body.recipeId;
-
+        const recipeId = req.body.recipeId.toString();
 
         if(favourites.includes(recipeId)) {
             favourites.splice(favourites.indexOf(recipeId), 1);

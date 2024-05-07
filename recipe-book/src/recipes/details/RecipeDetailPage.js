@@ -18,6 +18,7 @@ function RecipeDetailPage() {
         const response = await axios({
             method: 'GET',
             url: 'http://localhost:80/recipe',
+            withCredentials: true,
             params: {
                 id: id
             }

@@ -37,7 +37,7 @@ const CheckSessionLoginMW = require('./middlewares/users/session/CheckSessionLog
 const GetSessionByIdMW = require('./middlewares/users/session/GetSessionByIdMW');
 const LoadFavouritesListMW = require('./middlewares/favourites/LoadFavouritesListMW');
 const UpdateSessionTimeMW = require('./middlewares/users/session/UpdateSessionTimeMW');
-
+const CheckSessionNotMandatoryMW = require('./middlewares/users/session/CheckSessionNotMandatoryMW');
 
 const PORT = 80
 
@@ -71,6 +71,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/pages',
+    GetUserBySessionMW(objectrepository),
+    CheckSessionNotMandatoryMW(),
     UpdateSessionTimeMW(objectrepository),
     BuildLoadRequestMW(),
     LoadRecipesMW(),
@@ -81,6 +83,8 @@ app.get('/pages',
 );
 
 app.get('/recipe',
+    GetUserBySessionMW(objectrepository),
+    CheckSessionNotMandatoryMW(),
     UpdateSessionTimeMW(objectrepository),
     BuildDetailsRequestMW(),
     LoadDetailsMW(),

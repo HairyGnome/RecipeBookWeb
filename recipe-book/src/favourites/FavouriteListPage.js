@@ -1,17 +1,15 @@
-
-
-import RecipeListItem from "../recipes/recipe list/RecipeListItem";
-import style from "./FavouriteList.module.css";
-import LoadingIndicator from "../common/loading/LoadingIndicator";
+import style from "./FavouriteListPage.module.css";
+import FavouriteList from "./list/FavouriteList";
+import NoFavourites from "./no favourites/NoFavourites";
 import {useEffect, useState} from "react";
 import axios from 'axios';
+import LoadingIndicator from "../common/loading/LoadingIndicator";
 
-function FavouriteList() {
+function FavouriteListPage() {
 
     const [page, setPage] = useState(1);
     const [recipes, setRecipes] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-
 
 
     const fetchRecipes = async () => {
@@ -29,11 +27,12 @@ function FavouriteList() {
         });
     }
 
+
     useEffect(() => {
         setIsLoading(true);
         fetchRecipes().then((data) => {
             console.log(data);
-            if(data) {
+            if (data) {
                 setRecipes(prevRecipes => [...prevRecipes, ...data]);
             }
             setIsLoading(false);
@@ -49,13 +48,9 @@ function FavouriteList() {
         <div className={style['page']}>
             <div className={style['recipe-list-container']}>
                 <div className={style['component-div']}>
-                    <div className={style['recipe-list']}>
-                        {recipes.map((item, key) => <RecipeListItem key={key} {...item} />)}
-                    </div>
-                    <div className={style['show-more-div']}>
-                        {isLoading ? <LoadingIndicator/> :
-                            <button className={style['show-more-button']} onClick={showMore}>Show More</button>}
-                    </div>
+                    { isLoading ? (recipes.length > 0 ?
+                        <FavouriteList favourites={recipes} isLoading={isLoading} showMore={showMore} /> : <LoadingIndicator />)
+                        : (recipes.length > 0 ? <FavouriteList favourites={recipes} isLoading={isLoading} showMore={showMore} /> : <NoFavourites />)}
                 </div>
             </div>
         </div>
@@ -63,4 +58,4 @@ function FavouriteList() {
     )
 }
 
-export default FavouriteList;
+export default FavouriteListPage;
