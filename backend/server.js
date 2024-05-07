@@ -71,6 +71,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/pages',
+    UpdateSessionTimeMW(objectrepository),
     BuildLoadRequestMW(),
     LoadRecipesMW(),
     BuildLoadResponseMW()/*
@@ -80,6 +81,7 @@ app.get('/pages',
 );
 
 app.get('/recipe',
+    UpdateSessionTimeMW(objectrepository),
     BuildDetailsRequestMW(),
     LoadDetailsMW(),
     BuildDetailsResponseMW(),

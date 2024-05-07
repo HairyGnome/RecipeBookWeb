@@ -18,7 +18,7 @@ function RecipeDetailsItem({recipe}) {
             withCredentials: true
         }).then(response => {
             const favourites = response.data;
-            if(response.status === 204) {
+            if(response.status === 208) {
                 setIsFavourite(false);
             } else {
                 setIsFavourite(favourites.includes(id.toString()));
