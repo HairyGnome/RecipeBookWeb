@@ -4,8 +4,8 @@ import {Bounce, toast} from "react-toastify";
 function InfoToast(message) {
     toast.info(message, {
         position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
+        autoClose: 3000,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
