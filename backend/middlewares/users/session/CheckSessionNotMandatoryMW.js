@@ -8,7 +8,6 @@ module.exports = function () {
         if(!sessionId) {
             return next();
         }
-        console.log(userid);
         if(!userid) {
             res.clearCookie('sessionId', {path: '/'});
             res.clearCookie('username', {path: '/'});

@@ -21,7 +21,7 @@ function LogoutPage() {
                 window.open('/', '_self');
             }
         }).catch(err => {
-            window.open('/error/520', '_self');
+            window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
         });
 
 

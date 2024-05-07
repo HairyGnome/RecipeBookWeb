@@ -31,7 +31,7 @@ function RecipeList() {
         }).then(response => {
             return response.data.data;
         }).catch(err => {
-            window.open('/error/520', '_self');
+            window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
         });
     }
 

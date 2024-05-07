@@ -44,7 +44,7 @@ function LoginForm() {
                     ErrorToast('Already logged in');
                     break;
                 default:
-                    window.open('/error/520', '_self');
+                    window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
                     break;
             }
         })

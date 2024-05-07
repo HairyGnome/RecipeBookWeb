@@ -1,25 +1,13 @@
-import {useParams} from "react-router-dom";
+import {useLocation, useParams} from "react-router-dom";
 import style from './ErrorPage.module.css';
 import ErrorImage from '../images/sad_cat.png';
 
 
 function ErrorPage() {
-    const { code } = useParams();
-
-    let message;
-    switch (code) {
-        case '404':
-            message = 'Page not found';
-            break;
-        case '500':
-            message = 'An error occurred when connecting to the server';
-            break;
-        case '520':
-            message = 'An unexpected error occurred'
-            break;
-        default:
-            message = 'An error occurred';
-    }
+    const location = useLocation();
+    const query = new URLSearchParams(location.search);
+    const code = query.get('code');
+    const message = query.get('message');
 
     return (
         <div className={style['error-page']}>

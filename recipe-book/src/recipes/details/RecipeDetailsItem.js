@@ -23,8 +23,9 @@ function RecipeDetailsItem({recipe}) {
             } else {
                 setIsFavourite(favourites.includes(id.toString()));
             }
-
-        })
+        }).catch( err => {
+            window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
+        });
     }, [id]);
 
     function toggleFavourite() {

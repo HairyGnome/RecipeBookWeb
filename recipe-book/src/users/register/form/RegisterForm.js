@@ -52,14 +52,12 @@ function RegisterForm() {
             if(res.status === 406) {
                 ErrorToast('Missing parameters! Please fill out all fields.');
             }
-
-        })
-            .catch(err => {
+        }).catch(err => {
                 if(err.response.status === 409) {
                     ErrorToast('Username or email address already exists');
                 }
                 else {
-                    window.open('/error/520', '_self');
+                    window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
                 }
         });
     };

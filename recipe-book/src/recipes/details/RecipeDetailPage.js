@@ -22,7 +22,9 @@ function RecipeDetailPage() {
             params: {
                 id: id
             }
-        });
+        }).catch(err => {
+            window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
+        })
         return response.data.data;
     }
 

@@ -20,10 +20,10 @@ function App() {
                     <Route path="/login" element={<LoginScreen />} />
                     <Route path="/register" element={<LoginScreen />} />
                     <Route path={"/recipes/:id"} element={<RecipeDetailPage />}/>
-                    <Route path="/error/:code" element={<ErrorPage />} />
+                    <Route path="/error" element={<ErrorPage />} />
                     <Route path='/logout' element={<LogoutPage />} />
                     <Route path='/favourites' element={<FavouriteListPage />} />
-                    <Route path='*' element={<Navigate to="/error/404" />} />
+                    <Route path='*' element={<Navigate to="/error?code=404&message=Page not found" />} />
                 </Routes>
             </div>
         </Router>

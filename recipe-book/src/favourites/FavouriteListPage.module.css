@@ -54,3 +54,11 @@
     font-size: 34px;
     font-weight: bold;
 }
+
+.loading-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}

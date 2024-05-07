@@ -23,7 +23,7 @@ function FavouriteListPage() {
         }).then(response => {
             return response.data.data;
         }).catch(err => {
-            // window.open('/error/520', '_self');
+            window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
         });
     }
 
@@ -49,7 +49,7 @@ function FavouriteListPage() {
             <div className={style['recipe-list-container']}>
                 <div className={style['component-div']}>
                     { isLoading ? (recipes.length > 0 ?
-                        <FavouriteList favourites={recipes} isLoading={isLoading} showMore={showMore} /> : <LoadingIndicator />)
+                            <FavouriteList favourites={recipes} isLoading={isLoading} showMore={showMore} /> : (<div className={style['loading-indicator']}><LoadingIndicator /></div>))
                         : (recipes.length > 0 ? <FavouriteList favourites={recipes} isLoading={isLoading} showMore={showMore} /> : <NoFavourites />)}
                 </div>
             </div>
