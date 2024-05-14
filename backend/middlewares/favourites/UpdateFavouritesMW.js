@@ -1,10 +1,7 @@
-
-
 module.exports = function (objectrepository) {
     return function (req, res, next) {
         const id = res.locals.favouritesId;
         const favourites = res.locals.favourites;
-
 
         objectrepository.Favourite.findOneAndUpdate({
             _id: id

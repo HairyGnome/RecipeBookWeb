@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import fullStar from '../../images/star_full.png';
 import emptyStar from '../../images/star_empty.png';
 import axios from "axios";
+import CommentSection from "../../comments/CommentSection";
 
 function RecipeDetailsItem({recipe}) {
     const {id, name, calories, prepTime, imageUrl, description, ingredients, instructions} = recipe;
@@ -18,12 +19,12 @@ function RecipeDetailsItem({recipe}) {
             withCredentials: true
         }).then(response => {
             const favourites = response.data;
-            if(response.status === 208) {
+            if (response.status === 208) {
                 setIsFavourite(false);
             } else {
                 setIsFavourite(favourites.includes(id.toString()));
             }
-        }).catch( err => {
+        }).catch(err => {
             window.open(`/error?code=${err.response.status}&message=${err.response.message}`, '_self');
         });
     }, [id]);
@@ -37,58 +38,66 @@ function RecipeDetailsItem({recipe}) {
             },
             withCredentials: true
         }).then(res => {
-            if(res.status === 200) {
+            if (res.status === 200) {
                 setIsFavourite(!isFavourite);
             }
-            if(res.status === 204) {
+            if (res.status === 204) {
                 setIsFavourite(false);
             }
         })
     }
 
     return (
-        <div className={styles['recipe-details-item']}>
-            <div className={styles["title-div"]}>
-                <h2>{name}</h2>
-            </div>
-            <div className={styles["image-div"]}>
-                <img src={imageUrl} alt="Food image" className={styles["food-image"]}/>
-            </div>
-            <div className={styles['icons-div']}>
-                <div className={styles["details-div"]}>
-                    <div className={styles["data-div"]}>
-                        <img src={energyImage} alt="Calories: " className={styles["data-logo"]}/>
-                        {calories}
+        <div>
+            <div className={styles['recipe-details-item']}>
+                <div className={styles["title-div"]}>
+                    <h2>{name}</h2>
+                </div>
+                <div className={styles["image-div"]}>
+                    <img src={imageUrl} alt="Food image" className={styles["food-image"]}/>
+                </div>
+                <div className={styles['icons-div']}>
+                    <div className={styles["details-div"]}>
+                        <div className={styles["data-div"]}>
+                            <img src={energyImage} alt="Calories: " className={styles["data-logo"]}/>
+                            {calories}
+                        </div>
+                        <div className={styles["data-div"]}>
+                            <img src={clockImage} alt="Prep time: " className={styles["data-logo"]}/>
+                            {prepTime}
+                        </div>
                     </div>
-                    <div className={styles["data-div"]}>
-                        <img src={clockImage} alt="Prep time: " className={styles["data-logo"]}/>
-                        {prepTime}
+                    <div className={styles['favourite-div']}>
+                        {isFavourite ? <img src={fullStar} className={styles['favourite-icon']} alt={'Favourite'}
+                                            onClick={toggleFavourite}/> :
+                            <img src={emptyStar} className={styles['favourite-icon']} alt={'Favourite'}
+                                 onClick={toggleFavourite}/>}
                     </div>
                 </div>
-                <div className={styles['favourite-div']}>
-                    {isFavourite ? <img src={fullStar} className={styles['favourite-icon']} alt={'Favourite'} onClick={toggleFavourite} /> : <img src={emptyStar} className={styles['favourite-icon']} alt={'Favourite'} onClick={toggleFavourite} /> }
-                </div>
-            </div>
 
-            <div className={styles['description']}>
-                <h2>Description</h2>
-                <p>{description}</p>
+                <div className={styles['description']}>
+                    <h2>Description</h2>
+                    <p>{description}</p>
+                </div>
+                <div className={styles['ingredients']}>
+                    <h2>Ingredients</h2>
+                    <ul>
+                        {ingredients.map((ingredient, key) => {
+                            return (<li key={key}>{ingredient}</li>)
+                        })}
+                    </ul>
+                </div>
+                <div className={styles['instructions']}>
+                    <h2>Instructions</h2>
+                    <ol>
+                        {instructions.map((instruction, key) => {
+                            return (<li key={key}>{instruction}</li>)
+                        })}
+                    </ol>
+                </div>
             </div>
-            <div className={styles['ingredients']}>
-                <h2>Ingredients</h2>
-                <ul>
-                    {ingredients.map((ingredient, key) => {
-                        return (<li key={key}>{ingredient}</li>)
-                    })}
-                </ul>
-            </div>
-            <div className={styles['instructions']}>
-            <h2>Instructions</h2>
-                <ol>
-                    { instructions.map((instruction, key) => {
-                        return(<li key={key}>{instruction}</li>)
-                    })}
-                </ol>
+            <div className={styles['comment-section']}>
+                <CommentSection recipeId={recipe.id}/>
             </div>
         </div>
     );

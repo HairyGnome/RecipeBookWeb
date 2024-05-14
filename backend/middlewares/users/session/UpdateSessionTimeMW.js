@@ -1,5 +1,3 @@
-
-
 module.exports = function (objectrepository) {
     return function(req, res, next) {
         const sessionId = req.cookies.sessionId;

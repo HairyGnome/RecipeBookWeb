@@ -1,5 +1,3 @@
-
-
 module.exports = function SendDetailsResponseMW() {
     return function(req, res, next) {
         res.json({

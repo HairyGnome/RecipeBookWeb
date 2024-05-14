@@ -1,6 +1,3 @@
-
-
-
 module.exports = function BuildDetailsRequestMW() {
     return function (req, res, next) {
         const id = req.query.id;

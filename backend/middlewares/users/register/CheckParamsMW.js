@@ -1,5 +1,3 @@
-
-
 module.exports = function () {
     return function (req, res, next) {
         if (typeof req.body === 'undefined'
@@ -12,7 +10,6 @@ module.exports = function () {
         if (!regex.test(req.body.password)) {
             return res.status(406).json({ message: 'Password must contain at least one uppercase letter, one lowercase letter, one number and be between 8 and 20 characters long' });
         }
-
         return next();
     };
 }

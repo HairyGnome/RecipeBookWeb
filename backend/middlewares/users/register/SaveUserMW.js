@@ -1,5 +1,3 @@
-
-
 module.exports = function (objectRepository) {
     return async function (req, res, next) {
         const newUser = new objectRepository.User({

@@ -1,6 +1,3 @@
-
-
-
 module.exports = function BuildDetailsResponseMW() {
     return function(req, res, next) {
         const data = res.locals.detailsData;

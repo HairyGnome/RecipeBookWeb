@@ -1,4 +1,5 @@
 const uuid = require('uuid');
+
 module.exports = function(objectrepository) {
     return function(req, res, next) {
         const user = res.locals.user;

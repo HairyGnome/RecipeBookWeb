@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import LoginButton from "../../login/button/LoginButton";
 import GetSessionCookie from "../../cookies/GetSessionCookie";
 import UserDropdown from "../user dropdown/UserDropdown";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 function Menu() {
@@ -16,7 +16,9 @@ function Menu() {
         return response;
     });
 
-
+    useEffect(() => {
+        setIsLoggedIn(GetSessionCookie('sessionId') !== null);
+    }, [])
 
     return (
         <nav>

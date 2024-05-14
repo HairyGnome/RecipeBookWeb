@@ -1,7 +1,4 @@
-
-
 module.exports = function (objectrepository) {
-
     return function (req, res, next) {
         const userid = res.locals.userid;
         if(!userid) {

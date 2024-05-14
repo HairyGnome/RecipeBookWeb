@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const User = require('./models/User');
 const Favourite = require('./models/Favourite');
 const Session = require('./models/Session');
+const Comment = require('./models/Comment');
 const cookieParser = require('cookie-parser');
 const BuildLoadRequestMW = require("./middlewares/load recipes/BuildLoadRequestMW");
 const LoadRecipesMW = require("./middlewares/load recipes/LoadRecipesMW");
@@ -38,13 +39,16 @@ const GetSessionByIdMW = require('./middlewares/users/session/GetSessionByIdMW')
 const LoadFavouritesListMW = require('./middlewares/favourites/LoadFavouritesListMW');
 const UpdateSessionTimeMW = require('./middlewares/users/session/UpdateSessionTimeMW');
 const CheckSessionNotMandatoryMW = require('./middlewares/users/session/CheckSessionNotMandatoryMW');
+const GetCommentsMW = require('./middlewares/comments/GetCommentsMW');
+const SaveCommentMW = require('./middlewares/comments/SaveCommentMW');
 
 const PORT = 80
 
 objectrepository = {
     User: User,
     Favourite: Favourite,
-    Session: Session
+    Session: Session,
+    Comment: Comment
 }
 
 mongoose.connect('mongodb://127.0.0.1:27017/recipe-book')
@@ -105,7 +109,6 @@ app.post('/users/register',
 app.post('/users/login',
     GetUserMW(objectrepository),
     GetSessionByIdMW(objectrepository),
-    CheckSessionLoginMW(objectrepository),
     CheckPasswordMW(),
     GenerateSessionIdMW(objectrepository),
     SendCookiesMW()
@@ -132,7 +135,7 @@ app.get('/users/favourites/list',
     LoadFavouritesMW(objectrepository),
     LoadFavouritesListMW(objectrepository),
     BuildLoadResponseMW(),
-    )
+);
 
 app.get('/users/favourites',
     GetUserBySessionMW(objectrepository),
@@ -142,6 +145,19 @@ app.get('/users/favourites',
     SendFavouritesMW(objectrepository)
 );
 
+app.get('/comments/:recipeId',
+    GetUserBySessionMW(objectrepository),
+    CheckSessionNotMandatoryMW(),
+    UpdateSessionTimeMW(objectrepository),
+    GetCommentsMW(objectrepository)
+);
+
+app.post('/comment',
+    GetUserBySessionMW(objectrepository),
+    CheckSessionMW(objectrepository),
+    UpdateSessionTimeMW(objectrepository),
+    SaveCommentMW(objectrepository)
+);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -1,5 +1,3 @@
-
-
 module.exports = function (objectrepository) {
     return function (req, res, next) {
         const favourites = res.locals.favourites;
@@ -12,7 +10,6 @@ module.exports = function (objectrepository) {
         }
 
         res.locals.favourites = favourites;
-
         return next();
     }
 }

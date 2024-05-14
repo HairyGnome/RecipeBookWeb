@@ -1,5 +1,3 @@
-
-
 module.exports = function BuildLoadRequestMW() {
     return function(req, res, next) {
         const pages = req.query.page;
@@ -20,7 +18,6 @@ module.exports = function BuildLoadRequestMW() {
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
             }
         };
-
         return next();
     };
 }

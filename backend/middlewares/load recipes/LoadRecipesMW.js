@@ -7,6 +7,10 @@ module.exports = function LoadRecipesMW() {
             .then(response => {
                 res.locals.recipeData = response.data.results;
                 return next();
-            });
+            })
+            .catch(err => {
+                console.log(err);
+                return res.status(500).json({message: 'Error trying to reach external API.'})
+            })
     };
 }

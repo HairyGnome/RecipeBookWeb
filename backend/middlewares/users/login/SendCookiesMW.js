@@ -1,5 +1,3 @@
-
-
 module.exports = function(objectrepository) {
     return function(req, res, next) {
         res.cookie('sessionId', res.locals.sessionId, {path: '/'});

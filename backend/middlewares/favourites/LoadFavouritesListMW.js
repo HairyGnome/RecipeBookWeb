@@ -37,6 +37,10 @@ module.exports = function (objectrepository) {
                             'X-RapidAPI-Host': 'tasty.p.rapidapi.com'
                         }
                     }).then(response => response.data)
+                        .catch(err => {
+                            console.log(err);
+                            return res.status(500).json({message: 'Error trying to reach external API.'});
+                        })
                 );
             }
 

@@ -3,6 +3,8 @@ import LoginForm from "./form/LoginForm";
 import Logo from "../../images/logo.png";
 import RegisterForm from "../register/form/RegisterForm";
 import {useLocation} from "react-router-dom";
+import {useEffect} from "react";
+import getSessionCookie from "../../common/cookies/GetSessionCookie";
 
 function LoginScreen() {
     const location = useLocation();
@@ -12,6 +14,13 @@ function LoginScreen() {
         have an account yet.</p>
 
     let registerText = <p className={style['welcome']}>Welcome to RecipeBook! Please register, or sign in if you already have an account! </p>
+
+    useEffect(() => {
+        if(getSessionCookie('sessionId')) {
+            window.open('/', '_self');
+        }
+    }, []);
+
 
     return (
         <div className={style['login-screen']}>

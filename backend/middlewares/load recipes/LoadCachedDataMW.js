@@ -214,6 +214,5 @@ module.exports = function LoadCachedDataMW() {
         };
         res.locals.recipeData = recipesData.recipes;
         return next();
-    }
-        ;
-    }
+    };
+}

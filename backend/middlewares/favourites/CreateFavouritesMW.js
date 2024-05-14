@@ -1,5 +1,3 @@
-
-
 module.exports = function (objectrepository) {
     return function (req, res, next) {
         const userId = res.locals.userId;
